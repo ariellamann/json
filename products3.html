@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Filter</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="products.css"/>
+</head>
+<body>
+
+    <div class="filter-container">
+        <select id="category-select">
+            <option value="">Select a category</option>
+        </select>
+        <button id="filter-button">Filter</button>
+    </div>
+
+    <div class="product-list" id="json-list"></div>
+
+    <script>
+        let products = [];
+
+        $.get("https://ariellamann.github.io/json/products.json")
+            .done(function(data) {
+                products = data; 
+                populateCategories(products); 
+                displayProducts(products);
+            })
+
+
+        function populateCategories(products) {
+            //avoids duplicates in categories
+            const categories = new Set(); 
+
+            products.forEach(product => {
+                product.categories.forEach(category => {
+                    categories.add(category);
+                })
+            })
+
+            const categorySelect = $('#category-select');
+            categories.forEach(category => {
+                categorySelect.append(new Option(category, category));
+            })
+        }
+
+        $('#filter-button').click(function() {
+            const selectedCategory = $('#category-select').val();
+            filterProducts(selectedCategory);
+        })
+
+        function displayProducts(data) {
+            let productList = document.getElementById('json-list');
+            productList.innerHTML = ''; 
+            data.forEach(product => {
+                let productDiv = `<div class="product">
+                    <h3>${product.name}</h3>
+                    <p>${product.description}</p>
+                    <p class="price">Price: $${product.price}</p>
+                    <p class="categories">Categories: ${product.categories.join(', ')}</p>
+                </div>`
+                productList.innerHTML += productDiv;
+            })
+        }
+
+        function filterProducts(selectedCategory) {
+            const filteredProducts = products.filter(product => 
+                product.categories.includes(selectedCategory)
+            )
+            const productList = $('#json-list');
+            productList.empty(); 
+
+            filteredProducts.forEach(product => {
+                productList.append(`<div class="product"><h3>${product.name}</h3></div>`)
+            })
+        }
+    </script>
+
+</body>
+</html>

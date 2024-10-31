@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product List</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="products.css"/>
+</head>
+<body>
+
+    <div class="product-list" id="json-list"></div>
+
+    <script>
+        $.get("https://ariellamann.github.io/json/products.json")
+            .done(function(data) {
+                let productList = document.getElementById('json-list');
+                productList.innerHTML = ''; // Clear existing content
+                    data.forEach(product => {
+                        // Create a product card
+                        let productDiv = `
+                            <div class="product">
+                                <h3>${product.name}</h3>
+                                <p>${product.description}</p>
+                                <p class="price">Price: $${product.price}</p>
+                                <p class="categories">Categories: ${product.categories.join(', ')}</p>
+                            </div>
+                        `;
+                        // Append the product card to the product list
+                        productList.innerHTML += productDiv;
+                    });
+            })
+    </script>
+
+</body>
+</html>
