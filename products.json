@@ -1,0 +1,52 @@
+{
+    "items": [
+        {
+            "name": "Blush",
+            "price": 15,
+            "description": "Pink blush for cheeks",
+            "categories": ["makeup", "beauty"]
+        },
+        {
+            "name": "Mascara",
+            "price": 20,
+            "description": "Dark black mascara for long lashes",
+            "categories": ["makeup", "beauty"]
+        },
+        {
+            "name": "Face wash",
+            "price": 10,
+            "description": "Deep cleansing face wash",
+            "categories": ["hygiene", "beauty"]
+        },
+        {
+            "name": "Shampoo",
+            "price": 20,
+            "description": "Rose scented hair repairing shampoo for oily hair",
+            "categories": ["hygiene"]
+        },
+        {
+            "name": "Lotion",
+            "price": 5,
+            "description": "Vanilla lotion for dry, cracked skin",
+            "categories": ["beauty"]
+        },
+        {
+            "name": "Lipgloss",
+            "price": 10,
+            "description": "Shimmery, cherry flavored lipgloss",
+            "categories": ["beauty", "makeup"]
+        },
+        {
+            "name": "Deodorant",
+            "price": 7,
+            "description": "Antiperspirant, coconut scented deodorant",
+            "categories": ["hygiene"]
+        },
+        {
+            "name": "Hair brush",
+            "price": 12,
+            "description": "Detangling hair brush for all hair types",
+            "categories": ["beauty"]
+        }
+    ]
+}
